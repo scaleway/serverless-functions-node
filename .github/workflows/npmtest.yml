@@ -3,7 +3,7 @@ name: npmtest
 
 on:
   push:
-    branches: [ "main","srvless-setup-repo" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
