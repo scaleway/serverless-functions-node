@@ -28,9 +28,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        uses: actions/setup-node@v3
         run: npm ci
 
       - name: Test with npm
-        uses: actions/setup-node@v3
         run: npm test
