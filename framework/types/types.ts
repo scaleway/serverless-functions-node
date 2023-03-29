@@ -30,15 +30,15 @@ type Context = {
     functionVersion: string;
 }
 
-type Callback = {
-    (error: Error | undefined, result: unknown): void
-}
-
 type ResponseRecord = {
     body?: string | Record<string, unknown>;
     headers?: Record<string, string>;
     statusCode?: number;
     isBase64Encoded?: boolean;
+}
+
+type Callback = {
+    (error: Error | undefined, result: string | ResponseRecord): void
 }
 
 export type Handler = (
