@@ -1,4 +1,4 @@
-type RequestContext = {
+export type RequestContext = {
     accountId: string;
     resourceId: string;
     stage: string;
@@ -9,7 +9,7 @@ type RequestContext = {
     apiId: string;
 }
 
-type Event = {
+export type Event = {
     resource: string;
     path: string;
     httpMethod: string;
@@ -24,25 +24,18 @@ type Event = {
     isBase64Encoded?: boolean;
 }
 
-type Context = {
+export type Context = {
     memoryLimitInMb: number;
     functionName: string;
     functionVersion: string;
 }
 
-type ResponseRecord = {
-    body?: string | Record<string, unknown>;
-    headers?: Record<string, string>;
-    statusCode?: number;
-    isBase64Encoded?: boolean;
-}
-
-type Callback = {
-    (error: Error | undefined, result: string | ResponseRecord): void
+export type Callback = {
+    (error: Error | undefined, result: unknown): void
 }
 
 export type Handler = (
     event: Event,
     context: Context,
     callback: Callback
-) => string | ResponseRecord | Promise<string> | Promise<ResponseRecord>
+) => unknown | Promise<unknown>;
