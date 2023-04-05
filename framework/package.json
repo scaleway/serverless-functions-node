@@ -2,11 +2,11 @@
   "name": "scaleway-functions-node",
   "version": "1.0.0",
   "description": "",
-  "main": "local/index.js",
+  "main": "dist/local/index.js",
+  "types": "dist/local/index.d.ts",
   "scripts": {
-    "build": "node_modules/.bin/tsc -p tsconfig.json",
-    "lint": "eslint . --ext .ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint . --ext .ts"
   },
   "author": "",
   "license": "MIT",
