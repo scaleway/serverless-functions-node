@@ -3,7 +3,7 @@ import {FastifyRequest} from "fastify";
 const MAX_CONTENT_LENGTH = 6291456
 
 export function isRejectedRequest(request: FastifyRequest): boolean {
-    return request.url.toString() == "/favicon.ico" || request.url.toString() == "robots.txt"
+    return request.url.toString() == "/favicon.ico" || request.url.toString() == "/robots.txt"
 }
 
 export function isValidContentLength(request: FastifyRequest): boolean {

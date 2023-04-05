@@ -16,7 +16,7 @@ export function serveHandler(handler: Handler, port = 8080) {
     );
 
     server.addContentTypeParser('multipart/form-data', function(request, payload, done) {
-        let body: string = ""
+        let body = ""
         payload.on('data', d => {
             body += d
         })
