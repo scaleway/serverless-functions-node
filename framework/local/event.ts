@@ -36,7 +36,7 @@ function formatRequestParams(request: FastifyRequest): Record<string, string> {
 export function formatHTTPEvent(request: FastifyRequest): Event {
     let body = "";
     if (request.body) {
-        body = JSON.stringify(request.body);
+        body = request.body as string;
     }
     const isBase64Encoded = Buffer.from(body, 'base64').toString('base64') === body;
 

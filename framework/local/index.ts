@@ -15,11 +15,15 @@ export function serveHandler(handler: Handler, port = 8080) {
         server.getDefaultJsonParser("ignore", "ignore")
     );
 
-    server.addContentTypeParser(
-        "multipart/form-data",
-        { parseAs: "string" },
-        server.getDefaultJsonParser("ignore", "ignore")
-    );
+    server.addContentTypeParser('multipart/form-data', function(request, payload, done) {
+        let body: string = ""
+        payload.on('data', d => {
+            body += d
+        })
+        payload.on('end', () => {
+            done(null, body)
+        })
+    });
 
     // Emulate core preprocess
     server.addHook('preValidation', function (request, reply, done) {
