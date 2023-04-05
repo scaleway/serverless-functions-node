@@ -4,7 +4,7 @@ import {FastifyReply, FastifyRequest} from "fastify";
 
 // Inject headers for incoming requests.
 export function injectIngressHeaders(request: FastifyRequest, event: Event) {
-    const headers: Record<string, unknown> = {};
+    const headers: Record<string, unknown> = event.headers as Event;
 
     headers["Forwarded"] = `for=${request.ip};proto=http`;
     headers["X-Forwarded-For"] = request.ip;
