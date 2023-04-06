@@ -31,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Check formatting
-        run: prettier --check .
+        run: npx prettier --check .
 
       - name: Build package
         run: npm run build
