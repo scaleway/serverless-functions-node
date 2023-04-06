@@ -33,7 +33,11 @@ export const handle = async (event, _context, cb) => {
   for (const part of parts) {
     console.log(`Saving object ${part.filename} to bucket ${BUCKET_NAME}...`);
     promises.push(
-      s3.putObject({ Bucket: BUCKET_NAME, Key: part.filename, Body: part.data })
+      s3.putObject({
+        Bucket: BUCKET_NAME,
+        Key: part.filename,
+        Body: part.data,
+      })
     );
   }
 
@@ -42,7 +46,7 @@ export const handle = async (event, _context, cb) => {
     return {
       statusCode: 200,
       body: `Successfully uploaded ${parts
-        .map((f) => f.filename)
+        .map(f => f.filename)
         .join(",")} to ${BUCKET_NAME}`,
     };
   } catch (err) {

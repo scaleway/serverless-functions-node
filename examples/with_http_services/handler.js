@@ -8,7 +8,7 @@ export async function handle(event, context) {
     const req = https.get(
       "https://pokeapi.co/api/v2/pokemon/ditto",
       function (res) {
-        res.on("data", (chunk) => {
+        res.on("data", chunk => {
           dataString += chunk;
         });
 
@@ -22,7 +22,7 @@ export async function handle(event, context) {
       }
     );
 
-    req.on("error", (e) => {
+    req.on("error", e => {
       reject({
         statusCode: 500,
         body: "Something went wrong!",

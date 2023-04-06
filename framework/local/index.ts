@@ -18,7 +18,7 @@ export function serveHandler(handler: Handler, port = 8080) {
     "multipart/form-data",
     function (request, payload, done) {
       let body = "";
-      payload.on("data", (d) => {
+      payload.on("data", d => {
         body += d;
       });
       payload.on("end", () => {

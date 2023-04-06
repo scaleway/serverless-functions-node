@@ -26,15 +26,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-          cache-dependency-path: ./framework/package-lock.json
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./framework
 
       - name: Check formatting
-        run: npx prettier --check .
+        run: prettier --check .
 
       - name: Build package
         run: npm run build
-        working-directory: ./framework

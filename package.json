@@ -2,10 +2,11 @@
   "name": "scaleway-functions-node",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/local/index.js",
+  "main": "framework/dist/local/index.js",
   "types": "dist/local/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "node_modules/.bin/tsc -p tsconfig.json",
+    "format": "prettier --write ."
   },
   "author": "",
   "license": "MIT",
