@@ -2,6 +2,7 @@ import { STATUS_CODES } from "http";
 
 import { S3 } from "@aws-sdk/client-s3";
 import { getBoundary, parse } from "parse-multipart-data";
+import { pathToFileURL } from "url";
 
 const BUCKET_NAME = process.env.BUCKET_NAME;
 const S3_REGION = process.env.S3_REGION;
@@ -56,3 +57,11 @@ export const handle = async (event, _context, cb) => {
     };
   }
 };
+
+/* Module was not imported but called directly, so we can test locally.
+This will not be executed on Scaleway Functions */
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  import("scaleway-functions-node").then(scw_fnc_node => {
+    scw_fnc_node.serveHandler(handle, 8080);
+  });
+}
