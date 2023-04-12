@@ -14,7 +14,6 @@ labels: bug
 
 <!--- Thank you for keeping this note for the community --->
 
-
 ### What did you do?
 
 ### What did you expect to see?

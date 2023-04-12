@@ -2,13 +2,21 @@
   "name": "scaleway-functions-node",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "directories": {
-    "example": "examples"
-  },
+  "main": "framework/dist/local/index.js",
+  "types": "dist/local/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node_modules/.bin/tsc -p tsconfig.json",
+    "format": "prettier --write ."
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@fastify/url-data": "^5.3.1",
+    "@types/node": "^18.15.11",
+    "fastify": "^4.15.0"
+  },
+  "devDependencies": {
+    "prettier": "2.8.7",
+    "typescript": "^5.0.2"
+  }
 }
