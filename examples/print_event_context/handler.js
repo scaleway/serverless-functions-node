@@ -1,25 +1,16 @@
 import { pathToFileURL } from "url";
 
 export function handle(event, context, callback) {
-  const response = {
+  return {
     statusCode: 201,
     body: {
-      message: "function with promise",
+      event: event,
+      context: context
     },
     headers: {
       "Content-Type": "application/json",
     },
   };
-
-  return new Promise((resolve, reject) => {
-    const day = new Date().getDay();
-    let err = undefined;
-    if (day === 0 || day === 6) {
-      err = new Error("Weekend are for resting");
-    }
-    if (err) return reject(err);
-    return resolve(response);
-  });
 }
 
 /* Module was not imported but called directly, so we can test locally.

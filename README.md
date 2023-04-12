@@ -30,8 +30,8 @@ npm i serverless-functions-node
 
 Add in `index.js` the following code:
 
-```javascript
-import { serveHandler } from "scaleway-functions-node";
+```js
+import { pathToFileURL } from "url";
 
 function handle(event, context, callback) {
   return {
@@ -45,7 +45,13 @@ function handle(event, context, callback) {
   };
 }
 
-serveHandler(handle, 8080);
+// Module was not imported but called directly, so we can test locally.
+// This will not be executed on Scaleway Functions
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  import("scaleway-functions-node").then(scw_fnc_node => {
+    scw_fnc_node.serveHandler(handle, 8080);
+  });
+}
 ```
 
 This file will expose your handler on a local web server allowing you to test your function.
@@ -56,6 +62,8 @@ $ node index.js
 $ curl -X GET http://localhost:8080
 > Hello World!
 ```
+
+If the test runs successfully, you can then deploy your function as it is.
 
 ## 🚀 Features
 

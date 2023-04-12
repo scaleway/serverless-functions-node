@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node not_stringified_body/handler.js"
+    "start": "node $FOLDER/handler.js"
   },
   "type": "module",
   "author": "",
