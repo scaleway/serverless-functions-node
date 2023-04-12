@@ -5,7 +5,7 @@ export function handle(event, context, callback) {
     statusCode: 201,
     body: {
       event: event,
-      context: context
+      context: context,
     },
     headers: {
       "Content-Type": "application/json",
