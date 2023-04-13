@@ -25,7 +25,7 @@ Testing frameworks for Scaleway Serverless Functions in other languages can be f
 To get this package:
 
 ```console
-npm i serverless-functions-node
+npm i @scaleway/serverless-functions
 ```
 
 Add in `index.js` the following code:
