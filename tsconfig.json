@@ -8,5 +8,5 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "exclude": ["node_modules", "framework/dist"]
+  "exclude": ["examples", "node_modules", "framework/dist"]
 }

@@ -31,7 +31,7 @@ We always appreciate a well-written, thorough bug report, and will thank you for
 Before opening a new issue, we appreciate you reviewing open issues to see if there are any similar requests.
 If there is a match, thumbs up the issue with a 👍 and leave a comment if you have additional information.
 
-When reporting an issue, please include the npm version number of `scaleway-functions-node` that you are using.
+When reporting an issue, please include the npm version number of `@scaleway/serverless-functions` that you are using.
 
 ## Suggesting a feature
 

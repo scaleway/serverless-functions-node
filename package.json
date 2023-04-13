@@ -1,5 +1,5 @@
 {
-  "name": "scaleway-functions-node",
+  "name": "@scaleway/serverless-functions",
   "version": "1.0.0",
   "description": "",
   "main": "framework/dist/local/index.js",
