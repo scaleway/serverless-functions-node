@@ -10,9 +10,6 @@
   "type": "module",
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "scaleway-functions-node": "file:../scaleway-functions-node-1.0.0.tgz"
-  },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.305.0",
     "https": "^1.0.0",
