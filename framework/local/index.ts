@@ -41,7 +41,7 @@ export function serveHandler(handler: Handler, port = 8080) {
     done();
   });
 
-  server.addHook("onSend", function (request, reply, payload, done) {
+  server.addHook("onRequest", function (request, reply, done) {
     // Those headers are added for convenience, but will be overwritten if set in the handler
     reply.header("Access-Control-Allow-Origin", "*");
     reply.header("Access-Control-Allow-Headers", "Content-Type");
