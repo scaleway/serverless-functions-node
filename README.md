@@ -85,32 +85,31 @@ You can find a number of examples in the [`examples` folder](examples/). These i
 
 What this package does:
 
-- **Formats Input**: Serverless Functions have a specific input format encapsulating the body received by functions to add some useful data. The local testing package lets you interact with the formatted data.
-- **Advanced debugging**: To improve developer experience you can run your handler locally and debug it by running your code step-by-step or reading output directly before deploying it.
+- **Formats input**: Serverless Functions have a specific input format, wrapping the body of the request with some extra metadata. This package lets you interact with that formatted data.
+- **Debugging**: It is not possible to remotely debug deployed Serverless Functions. With this package, you can run your functions locally, and debug issues in the emulated environment.
 
 What this package does not do:
 
-- **Simulate performance**: Scaleway FaaS lets you choose different options for CPU/RAM that can have an impact on your development. This package does not provide specific limits for your function on local testing but you can profile your application or you can use our metrics available in [Scaleway Console](https://console.scaleway.com/)
-  to monitor your application.
-- **Deploy functions**: When your function is uploaded we build it in an environment that can be different from yours. Our build pipelines support several dependencies but sometimes require specific system dependencies that we don't support If you have compatibility issues, please see the help section.
+- **Simulate performance**: Scaleway Functions let you choose different options for CPU/RAM that can have an impact on your function's performance. This package does not emulate these limits. To profile your deployed functions, you can use your [Scaleway Cockpit](https://www.scaleway.com/en/cockpit/).
+- **Deploy functions**: Scaleway Functions builds your code before running it. Although this package emulates the runtime environment, it does not emulate the build environment. Therefore it is possible that you may still encounter build issues even if the function passes local tests.
 
 ## ❓ FAQ
 
 **Why do I need an additional package to call my function?**
 
-Your Function Handler can be served by a simple HTTP server but Serverless Ecosystem involves a lot of different layers that will change changes the headers, input and output of your function. This package aims to simulate everything your request will go through to help you debug your application properly. This library is not mandatory to use Scaleway Serverless Functions.
+The Serverless Functions execution environment wraps your code in an HTTP server, and runs the resulting executable in a Kubernetes cluster behind a load balancer. This introduces a number of layers of abstraction, and additional metadata around the request body. This library attempts to emulate this environment as closely as possible, allowing you to debug your code locally, rather than discovering bugs after deployment.
 
 **How my function will be deployed**
 
-To deploy your function please refer to our official documentation.
+To deploy your function please refer to the different [deployment methods](https://www.scaleway.com/en/docs/serverless/functions/reference-content/deploy-function/).
 
-**Do I need to deploy my function differently?**
+**Does this package change the runtime behaviour of my function?**
 
-No. This framework does not affect deployment nor performance.
+No. This package is just for local testing, and will not impact runtime behaviour or performance.
 
 ## 🛟 Help & support
 
-- Scaleway support is available on Scaleway Console.
+- Scaleway support is available via the [Scaleway Console](https://console.scaleway.com).
 - Additionally, you can join our [Slack Community](https://www.scaleway.com/en/docs/tutorials/scaleway-slack-community/)
 
 ## 🎓 Contributing
