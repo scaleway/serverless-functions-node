@@ -3,17 +3,17 @@
 [![build-and-test](https://github.com/scaleway/serverless-functions-node/actions/workflows/npmtest.yml/badge.svg)](https://github.com/scaleway/serverless-functions-node/actions/workflows/npmtest.yml)
 ![node](https://img.shields.io/badge/node-16_|_18-blue.svg)
 
-Scaleway Serverless Functions Node is a framework which simplify Scaleway [Serverless Functions](https://www.scaleway.com/fr/serverless-functions/) local development.
-It brings features to debug your function locally and provides input/output data format of Scaleway Serverless Functions.
+Scaleway Serverless Functions Node is a framework which simplifies working with [Scaleway Serverless Functions](https://www.scaleway.com/en/serverless-functions/).
 
-This library helps you to write functions but for deployment refer to the documentation.
+It lets you debug your function locally, emulating the input and output format of a deployed Serverless Function.
 
-Get started with Scaleway Functions:
+Note that this library does not deploy functions for you. For that you can see the available [deployment methods](https://www.scaleway.com/en/docs/serverless/functions/reference-content/deploy-function/).
 
-- [Scaleway Serverless Functions Documentation](https://www.scaleway.com/en/docs/serverless/functions/quickstart/)
-- [Scaleway Serverless Framework plugin](https://github.com/scaleway/serverless-scaleway-functions)
-- [Scaleway Serverless Examples](https://github.com/scaleway/serverless-examples)
-- [Scaleway Cloud Provider](https://scaleway.com)
+Some useful links when working with Scaleway Functions:
+
+- [Serverless Functions Quick-start](https://www.scaleway.com/en/docs/serverless/functions/quickstart/)
+- [Serverless Framework plugin](https://github.com/scaleway/serverless-scaleway-functions)
+- [Serverless Examples](https://github.com/scaleway/serverless-examples)
 
 Testing frameworks for Scaleway Serverless Functions in other languages can be found here:
 
@@ -22,13 +22,21 @@ Testing frameworks for Scaleway Serverless Functions in other languages can be f
 
 ## ⚙️ Quickstart
 
-To get this package:
+Install this package:
 
 ```console
 npm i @scaleway/serverless-functions
 ```
 
-Add in `index.js` the following code:
+Update `package.json` to include:
+
+```json
+...
+  "type": "module",
+...
+```
+
+Add the following in `index.js`:
 
 ```js
 import { pathToFileURL } from "url";
@@ -45,8 +53,7 @@ function handle(event, context, callback) {
   };
 }
 
-// Module was not imported but called directly, so we can test locally.
-// This will not be executed on Scaleway Functions
+// This will execute when testing locally, but not when the function is launched
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   import("@scaleway/serverless-functions").then(scw_fnc_node => {
     scw_fnc_node.serveHandler(handle, 8080);
@@ -54,8 +61,9 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
 }
 ```
 
-This file will expose your handler on a local web server allowing you to test your function.
-You can then run your function locally with:
+This file will expose your handler on a local web server, letting you invoke your function code directly.
+
+You can do this as follows:
 
 ```console
 $ node index.js
@@ -63,61 +71,54 @@ $ curl -X GET http://localhost:8080
 > Hello World!
 ```
 
-If the test runs successfully, you can then deploy your function as it is.
+By running a function locally like this, we can be sure it will work when deployed to Serverless Functions.
 
-## 🚀 Features
+## 📚 Examples
 
-This repository aims to provide a better experience on: **local testing, utils, documentation**
+You can find a number of examples in the [`examples` folder](examples/). These include:
 
-### 🏡 Local testing
+- [Using promises](examples/with_promise)
+- [Using callbacks](examples/with_callback)
+- [Interacting with HTTP services](examples/with_http_services)
+
+## 🏡 Local testing
 
 What this package does:
 
-- **Format Input**: Serverless Functions have a specific input format encapsulating the body received by functions to add some useful data.
-  The local testing package lets you interact with the formatted data.
-- **Advanced debugging**: To improve developer experience you can run your handler locally and debug it by running your code step-by-step or reading output directly before deploying it.
+- **Formats input**: Serverless Functions have a specific input format, wrapping the body of the request with some extra metadata. This package lets you interact with that formatted data.
+- **Debugging**: It is not possible to remotely debug deployed Serverless Functions. With this package, you can run your functions locally, and debug issues in the emulated environment.
 
-What this package does not:
+What this package does not do:
 
-- **Simulate performance**: Scaleway FaaS lets you choose different options for CPU/RAM that can have an impact
-  on your development. This package does not provide specific limits for your function on local testing but you can
-  profile your application or you can use our metrics available in [Scaleway Console](https://console.scaleway.com/)
-  to monitor your application.
-- **Deploy functions**: When your function is uploaded we build it in an environment that can be different from yours. Our build pipelines support
-  several dependencies but sometimes require specific system dependencies that we don't support If you have compatibility issues, please see the help section.
+- **Simulate performance**: Scaleway Functions let you choose different options for CPU/RAM that can have an impact on your function's performance. This package does not emulate these limits. To profile your deployed functions, you can use your [Scaleway Cockpit](https://www.scaleway.com/en/cockpit/).
+- **Deploy functions**: Scaleway Functions builds your code before running it. Although this package emulates the runtime environment, it does not emulate the build environment. Therefore it is possible that you may still encounter build issues even if the function passes local tests.
 
 ## ❓ FAQ
 
 **Why do I need an additional package to call my function?**
 
-Your Function Handler can be served by a simple HTTP server but Serverless Ecosystem involves a lot of different layers that will change changes the headers, input and output of your function. This package aims to simulate everything your request will go through to help you debug your application properly.
-This library is not mandatory to use Scaleway Serverless Functions.
+The Serverless Functions execution environment wraps your code in an HTTP server, and runs the resulting executable in a Kubernetes cluster behind a load balancer. This introduces a number of layers of abstraction, and additional metadata around the request body. This library attempts to emulate this environment as closely as possible, allowing you to debug your code locally, rather than discovering bugs after deployment.
 
 **How my function will be deployed**
 
-To deploy your function please refer to our official documentation.
+To deploy your function please refer to the different [deployment methods](https://www.scaleway.com/en/docs/serverless/functions/reference-content/deploy-function/).
 
-**Do I need to deploy my function differently?**
+**Does this package change the runtime behaviour of my function?**
 
-No. This framework does not affect deployment nor performance.
+No. This package is just for local testing, and will not impact runtime behaviour or performance.
 
 ## 🛟 Help & support
 
-- Scaleway support is available on Scaleway Console.
+- Scaleway support is available via the [Scaleway Console](https://console.scaleway.com).
 - Additionally, you can join our [Slack Community](https://www.scaleway.com/en/docs/tutorials/scaleway-slack-community/)
 
 ## 🎓 Contributing
 
-Additionally, we love to share things with the community and we want to expose receipts to the public. That's why
-we make our framework publicly available to help the community!
-
-Do not hesitate to raise issues and pull requests we will have a look at them.
-
-If you are looking for a way to contribute please read [CONTRIBUTING.md](./.github/CONTRIBUTING.md).
+We love to share things with the community. Feel free to raise issues and pull requests on this repo according to the [contributing guidelines](./.github/CONTRIBUTING.md).
 
 ## 📭 Reach Us
 
-We love feedback. Feel free to:
+If you want to get in touch with use, you can:
 
 - Open a [Github issue](https://github.com/scaleway/serverless-functions-node/issues/new)
 - Send us a message on the [Scaleway Slack community](https://slack.scaleway.com/), in the
