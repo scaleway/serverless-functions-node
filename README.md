@@ -3,7 +3,7 @@
 [![build-and-test](https://github.com/scaleway/serverless-functions-node/actions/workflows/npmtest.yml/badge.svg)](https://github.com/scaleway/serverless-functions-node/actions/workflows/npmtest.yml)
 ![node](https://img.shields.io/badge/node-16_|_18-blue.svg)
 
-Scaleway Serverless Functions Node is a framework which simplifies working with [Scaleway Serverless Functions](https://www.scaleway.com/fr/serverless-functions/).
+Scaleway Serverless Functions Node is a framework which simplifies working with [Scaleway Serverless Functions](https://www.scaleway.com/en/serverless-functions/).
 
 It lets you debug your function locally, emulating the input and output format of a deployed Serverless Function.
 
@@ -72,6 +72,14 @@ $ curl -X GET http://localhost:8080
 ```
 
 By running a function locally like this, we can be sure it will work when deployed to Serverless Functions.
+
+## 📚 Examples
+
+You can find a number of examples in the [`examples` folder](examples/). These include:
+
+- [Using promises](examples/with_promise)
+- [Using callbacks](examples/with_callback)
+- [Interacting with HTTP services](examples/with_http_services)
 
 ## 🏡 Local testing
 
