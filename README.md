@@ -58,6 +58,8 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
 ### For Common JS
 
 ```js
+const url = require("url");
+
 module.exports.handle = (event, context, callback) => {
   return {
     statusCode: 201,
@@ -70,8 +72,8 @@ module.exports.handle = (event, context, callback) => {
   };
 };
 
-/* This is used to test locally and will not be executed on Scaleway Functions */
-if (process.env.NODE_ENV === "test") {
+// This will execute when testing locally, but not when the function is launched
+if ("file://" + __filename === url.pathToFileURL(process.argv[1]).href) {
   import("@scaleway/serverless-functions").then(scw_fnc_node => {
     scw_fnc_node.serveHandler(exports.handle, 8080);
   });
