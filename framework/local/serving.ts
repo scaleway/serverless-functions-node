@@ -37,7 +37,7 @@ const handleResponse = (reply: FastifyReply, result: unknown) => {
 export async function emulateCoreProcess(
   handler: Handler,
   request: FastifyRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) {
   const event = formatHTTPEvent(request);
   injectIngressHeaders(request, event);
@@ -54,7 +54,7 @@ async function emulateSubruntime(
   event: Event,
   context: Context,
   request: FastifyRequest,
-  reply: FastifyReply
+  reply: FastifyReply,
 ) {
   let responseSentByCallback = false;
   const callback: Callback = (error, result) => {

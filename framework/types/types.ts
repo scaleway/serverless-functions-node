@@ -37,5 +37,5 @@ export type Callback = {
 export type Handler = (
   event: Event,
   context: Context,
-  callback: Callback
+  callback: Callback,
 ) => unknown | Promise<unknown>;
