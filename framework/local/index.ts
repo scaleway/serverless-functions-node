@@ -11,7 +11,7 @@ export function serveHandler(handler: Handler, port = 8080) {
   server.addContentTypeParser(
     "application/x-www-form-urlencoded",
     { parseAs: "string" },
-    server.getDefaultJsonParser("ignore", "ignore")
+    server.getDefaultJsonParser("ignore", "ignore"),
   );
 
   server.addContentTypeParser(
@@ -24,7 +24,7 @@ export function serveHandler(handler: Handler, port = 8080) {
       payload.on("end", () => {
         done(null, body);
       });
-    }
+    },
   );
 
   // Emulate core preprocess
@@ -32,7 +32,7 @@ export function serveHandler(handler: Handler, port = 8080) {
     // Emulate the CoreRT guard
     if (isRejectedRequest(request)) {
       console.error(
-        "request will be rejected for calling favicon.ico or robots.txt"
+        "request will be rejected for calling favicon.ico or robots.txt",
       );
     }
     if (isValidContentLength(request)) {
@@ -50,7 +50,7 @@ export function serveHandler(handler: Handler, port = 8080) {
 
   const serverFactory = async (
     request: FastifyRequest,
-    reply: FastifyReply
+    reply: FastifyReply,
   ) => {
     await emulateCoreProcess(handler, request, reply);
   };

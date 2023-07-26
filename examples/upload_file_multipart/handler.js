@@ -38,7 +38,7 @@ export const handle = async (event, _context, cb) => {
         Bucket: BUCKET_NAME,
         Key: part.filename,
         Body: part.data,
-      })
+      }),
     );
   }
 

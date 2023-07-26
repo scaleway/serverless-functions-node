@@ -16,7 +16,7 @@ function formatRequestContext(request: FastifyRequest): RequestContext {
 }
 
 function formatRequestHeaders(
-  headers: IncomingHttpHeaders
+  headers: IncomingHttpHeaders,
 ): Record<string, unknown> {
   const formattedHeader: Record<string, unknown> = {};
   for (const key in headers) {

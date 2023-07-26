@@ -20,7 +20,7 @@ export async function handle(event, context) {
             body: JSON.stringify(JSON.parse(dataString), null, 4),
           });
         });
-      }
+      },
     );
 
     req.on("error", e => {
