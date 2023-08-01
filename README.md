@@ -28,7 +28,7 @@ Install this package:
 npm i @scaleway/serverless-functions
 ```
 
-Add the following in the file where your handle is definied:
+Add the following in the file where your handle is defined:
 
 ### For ES Modules
 
