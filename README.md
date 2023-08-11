@@ -28,15 +28,9 @@ Install this package:
 npm i @scaleway/serverless-functions
 ```
 
-Update `package.json` to include:
+Add the following in the file where your handle is defined:
 
-```json
-...
-  "type": "module",
-...
-```
-
-Add the following in `index.js`:
+### For ES Modules
 
 ```js
 import { pathToFileURL } from "url";
@@ -60,6 +54,33 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   });
 }
 ```
+
+### For Common JS
+
+```js
+const url = require("url");
+
+module.exports.handle = (event, context, callback) => {
+  return {
+    statusCode: 201,
+    body: JSON.stringify({
+      message: "Hello World!",
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+};
+
+// This will execute when testing locally, but not when the function is launched
+if ("file://" + __filename === url.pathToFileURL(process.argv[1]).href) {
+  import("@scaleway/serverless-functions").then(scw_fnc_node => {
+    scw_fnc_node.serveHandler(exports.handle, 8080);
+  });
+}
+```
+
+### Usage
 
 This file will expose your handler on a local web server, letting you invoke your function code directly.
 
