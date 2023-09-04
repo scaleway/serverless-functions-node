@@ -16,7 +16,7 @@
     "fastify": "^4.15.0"
   },
   "devDependencies": {
-    "prettier": "3.0.2",
+    "prettier": "3.0.3",
     "typescript": "^5.0.4"
   }
 }
