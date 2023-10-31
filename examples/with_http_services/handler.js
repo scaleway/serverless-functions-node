@@ -8,7 +8,7 @@ export async function handle(event, context) {
   const response = await new Promise((resolve, reject) => {
     const req = https.get(
       "https://pokeapi.co/api/v2/pokemon/ditto",
-      function (res) {
+      function(res) {
         res.on("data", chunk => {
           dataString += chunk;
         });
