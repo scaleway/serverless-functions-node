@@ -9,10 +9,22 @@ export function serveHandler(handler: Handler, port = 8080) {
   server.register(plugin);
 
   server.addContentTypeParser(
+    "text/json",
+    { parseAs: 'string' },
+    server.defaultTextParser
+  )
+
+  server.addContentTypeParser(
     "application/x-www-form-urlencoded",
+    { parseAs: 'string' },
+    server.defaultTextParser
+  )
+
+  server.addContentTypeParser(
+    "application/json",
     { parseAs: "string" },
-    server.defaultTextParser,
-  );
+    server.defaultTextParser
+  )
 
   server.addContentTypeParser(
     "multipart/form-data",
@@ -26,12 +38,6 @@ export function serveHandler(handler: Handler, port = 8080) {
       });
     },
   );
-
-  server.addContentTypeParser(
-    "application/json",
-    { parseAs: "string" },
-    server.defaultTextParser
-  )
 
   // Emulate core preprocess
   server.addHook("preValidation", function(request, reply, done) {
