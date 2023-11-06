@@ -10,4 +10,3 @@ npm link ..
 
 node with_object/handler.js
 ```
-
