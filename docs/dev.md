@@ -2,7 +2,7 @@
 
 To test your local version of this package, you can use [`npm link`](https://docs.npmjs.com/cli/v6/commands/npm-link).
 
-You can do this quickly from the `examples` directory with:
+You can do this from the `examples` directory with:
 
 ```sh
 cd examples
@@ -13,7 +13,7 @@ node with_object/handler.js
 
 ## Tests
 
-You can run tests locall with:
+You can run tests locally with:
 
 ```sh
 npm test

@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { serveHandler } from "../framework/local/index";
-import { Event, Callback, Context, Handler } from "../framework/types/types";
+import { Event, Callback, Context } from "../framework/types/types";
 
 function handler(event: Event, context: Context, callback: Callback) {
   return {
@@ -8,16 +8,16 @@ function handler(event: Event, context: Context, callback: Callback) {
   };
 }
 
-describe("testing index file", () => {
+describe("Test local server can handle different request types", () => {
   let server: FastifyInstance;
 
-  // Applies only to tests in this describe block
   beforeEach(async () => {
+    // Start the server
     server = serveHandler(handler, 8080);
     await server.ready();
   });
 
-  test("Check GET request", async () => {
+  test("GET request response", async () => {
     // Make request
     const response = await fetch("http://localhost:8080", {
       method: "GET",
@@ -27,7 +27,7 @@ describe("testing index file", () => {
     expect(responseText).toBe("Hello from a GET request");
   });
 
-  test("Check POST request", async () => {
+  test("POST request response", async () => {
     // Make request
     let data = { foo: "bar" };
     const response = await fetch("http://localhost:8080", {
