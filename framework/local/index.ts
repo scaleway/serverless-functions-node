@@ -1,11 +1,11 @@
-import { fastify, FastifyReply, FastifyRequest } from "fastify";
+import { fastify, FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import plugin = require("@fastify/url-data");
 import { Handler } from "../types/types";
 import { isRejectedRequest, isValidContentLength } from "./http";
 import { emulateCoreProcess } from "./serving";
 
-export function serveHandler(handler: Handler, port = 8080) {
-  const server = fastify();
+export function serveHandler(handler: Handler, port = 8080): FastifyInstance {
+  let server = fastify();
   server.register(plugin);
 
   server.addContentTypeParser(
@@ -54,7 +54,7 @@ export function serveHandler(handler: Handler, port = 8080) {
   });
 
   server.addHook("onRequest", function (request, reply, done) {
-    // Those headers are added for convenience, but will be overwritten if set in the handler
+    // These headers are added for convenience, but will be overwritten if set in the handler
     reply.header("Access-Control-Allow-Origin", "*");
     reply.header("Access-Control-Allow-Headers", "Content-Type");
     done();
@@ -76,4 +76,6 @@ export function serveHandler(handler: Handler, port = 8080) {
     }
     console.log(`Server listening at ${address}`);
   });
+
+  return server
 }
