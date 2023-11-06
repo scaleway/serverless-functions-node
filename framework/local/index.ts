@@ -1,4 +1,9 @@
-import { fastify, FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+import {
+  fastify,
+  FastifyInstance,
+  FastifyReply,
+  FastifyRequest,
+} from "fastify";
 import plugin = require("@fastify/url-data");
 import { Handler } from "../types/types";
 import { isRejectedRequest, isValidContentLength } from "./http";
@@ -77,5 +82,5 @@ export function serveHandler(handler: Handler, port = 8080): FastifyInstance {
     console.log(`Server listening at ${address}`);
   });
 
-  return server
+  return server;
 }

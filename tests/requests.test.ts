@@ -8,7 +8,7 @@ function handler(event: Event, context: Context, callback: Callback) {
   };
 }
 
-describe('testing index file', () => {
+describe("testing index file", () => {
   let server: FastifyInstance;
 
   // Applies only to tests in this describe block
@@ -17,24 +17,24 @@ describe('testing index file', () => {
     await server.ready();
   });
 
-  test('Check GET request', async () => {
+  test("Check GET request", async () => {
     // Make request
-    const response = await fetch('http://localhost:8080', {
-      method: 'GET',
+    const response = await fetch("http://localhost:8080", {
+      method: "GET",
     });
 
     var responseText = await response.text();
     expect(responseText).toBe("Hello from a GET request");
   });
 
-  test('Check POST request', async () => {
+  test("Check POST request", async () => {
     // Make request
-    let data = { "foo": "bar" };
-    const response = await fetch('http://localhost:8080', {
+    let data = { foo: "bar" };
+    const response = await fetch("http://localhost:8080", {
       headers: {
         "Content-Type": "application/json",
       },
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(data),
     });
 
