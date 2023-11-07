@@ -23,7 +23,7 @@ describe("Test local server can handle different request types", () => {
       method: "GET",
     });
 
-    var responseText = await response.text();
+    const responseText = await response.text();
     expect(responseText).toBe("Hello from a GET request");
   });
 
@@ -38,7 +38,7 @@ describe("Test local server can handle different request types", () => {
       body: JSON.stringify(data),
     });
 
-    var responseText = await response.text();
+    const responseText = await response.text();
     expect(responseText).toBe("Hello from a POST request");
   });
 

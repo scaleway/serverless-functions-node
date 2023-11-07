@@ -21,7 +21,18 @@ npm test
 
 Make sure you have at least Node 18 installed (see below).
 
-## Multiple versions
+## Releasing
+
+To release a new version:
+
+- Update the version in `package.json`
+- Create a PR (or add to an existing PR)
+- Merge the PR to `main`
+- Create a new Release [in Github](https://github.com/scaleway/serverless-functions-node/releases)
+
+Please follow [Semantic Versioning](https://semver.org/) guidelines when deciding which version to go to.
+
+## Managing multiple Node versions
 
 The build runs on multiple versions of Node. To manage multiple Node versions locally, you can use [`nvm`](https://github.com/nvm-sh/nvm).
 
