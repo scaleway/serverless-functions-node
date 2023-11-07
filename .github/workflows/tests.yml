@@ -63,3 +63,10 @@ jobs:
       - name: "Install dependencies"
         run: npm ci
 
+      - name: "Run example"
+        run: |
+          npm link ..
+          node ${{ matrix.example }}/handler.js &
+          sleep 1
+          curl http://localhost:8080
+        shell: bash
