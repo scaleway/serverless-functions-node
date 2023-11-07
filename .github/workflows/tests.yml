@@ -40,18 +40,19 @@ jobs:
     strategy:
       matrix:
         node-version: ["16.x", "18.x"]
-        example: [
-          "not_stringified_body",
-          "print_event_context",
-          "stringified_body",
-          "upload_file_multipart",
-          "with_callback",
-          "with_event_components",
-          "with_http_get",
-          "with_http_post",
-          "with_object",
-          "with_promise",
-        ]
+        example:
+          [
+            "not_stringified_body",
+            "print_event_context",
+            "stringified_body",
+            "upload_file_multipart",
+            "with_callback",
+            "with_event_components",
+            "with_http_get",
+            "with_http_post",
+            "with_object",
+            "with_promise",
+          ]
 
     runs-on: ubuntu-22.04
     steps:
@@ -73,4 +74,5 @@ jobs:
       - name: "Run example"
         run: |
           node ${{ matrix.example }}/handler.js &
+          sleep 2 &
           curl http://localhost:8080
