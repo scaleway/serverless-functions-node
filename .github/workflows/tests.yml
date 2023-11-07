@@ -56,7 +56,6 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-        working-directory: .
 
       - name: "Set up node ${{ matrix.node-version }}"
         id: setup-node
@@ -64,6 +63,9 @@ jobs:
         with:
           node-version: "${{ matrix.node-version }}"
           cache: "npm"
+
+      - name: "Install dependencies"
+        run: npm ci
 
       - name: "Link framework"
         run: npm link ..
