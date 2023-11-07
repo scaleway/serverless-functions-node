@@ -64,12 +64,9 @@ jobs:
       - name: "Install dependencies"
         run: npm ci
 
-      - name: "Install framework"
-        run: npm install .
-        working-directory: .
-
       - name: "Run example"
         run: |
+          npm link ..
           node ${{ matrix.example }}/handler.js &
-          sleep 2 &
+          sleep 2
           curl http://localhost:8080
