@@ -68,5 +68,5 @@ jobs:
         run: |
           npm link ..
           node ${{ matrix.example }}/handler.js &
-          sleep 2
+          sleep 1
           curl http://localhost:8080
