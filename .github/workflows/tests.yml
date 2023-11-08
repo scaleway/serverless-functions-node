@@ -73,10 +73,11 @@ jobs:
 
       - name: "Run example"
         run: node ${{ matrix.example }}/handler.js &
+        working-directory: "examples"
 
-      - name: "Run example"
-        run: |
-          node ${{ matrix.example }}/handler.js &
-          sleep 1
-          curl http://localhost:8080
+      - name: "Wait for it to start"
+        run: sleep 1
+
+      - name: "Launch a request"
+        run: curl http://localhost:8080
         working-directory: "examples"
