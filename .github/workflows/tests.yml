@@ -31,6 +31,7 @@ jobs:
     defaults:
       run:
         working-directory: ./examples
+
     strategy:
       matrix:
         node-version: ["16.x", "18.x"]
@@ -59,15 +60,23 @@ jobs:
           node-version: "${{ matrix.node-version }}"
           cache: "npm"
 
+      - name: "Link top-level"
+        run: npm link
+
       - name: "Install dependencies"
         run: npm ci
+        working-directory: "examples"
 
       - name: "Link local framework"
-        run: npm link @scaleway/serverless-functions ..
+        run: npm link @scaleway/serverless-functions
+        working-directory: "examples"
+
+      - name: "Run example"
+        run: node ${{ matrix.example }}/handler.js &
 
       - name: "Run example"
         run: |
           node ${{ matrix.example }}/handler.js &
           sleep 1
           curl http://localhost:8080
-        shell: bash
+        working-directory: "examples"
