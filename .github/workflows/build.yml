@@ -15,7 +15,7 @@ jobs:
       matrix:
         node-version: ["16.x", "18.x"]
 
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
 
