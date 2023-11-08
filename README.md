@@ -98,9 +98,12 @@ By running a function locally like this, we can be sure it will work when deploy
 
 You can find a number of examples in the [`examples` folder](examples/). These include:
 
+- [Accessing the event context](examples/print_event_context)
+- [Making HTTP GET requests](examples/with_http_services)
+- [Making HTTP POST requests](examples/with_http_services)
+- [Uploading files](examples/upload_file_multipart)
 - [Using promises](examples/with_promise)
 - [Using callbacks](examples/with_callback)
-- [Interacting with HTTP services](examples/with_http_services)
 
 ## 🏡 Local testing
 

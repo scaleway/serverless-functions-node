@@ -1,12 +1,13 @@
 {
   "name": "@scaleway/serverless-functions",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "",
   "main": "framework/dist/local/index.js",
   "types": "framework/dist/local/index.d.ts",
   "scripts": {
     "build": "node_modules/.bin/tsc -p tsconfig.json",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "jest"
   },
   "author": "",
   "license": "MIT",
@@ -16,7 +17,10 @@
     "fastify": "^4.15.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.7",
+    "jest": "^29.7.0",
     "prettier": "3.0.3",
+    "ts-jest": "^29.1.1",
     "typescript": "^5.0.4"
   }
 }
