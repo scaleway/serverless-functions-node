@@ -29,6 +29,7 @@ To release a new version:
 - Create a PR (or add to an existing PR)
 - Merge the PR to `main`
 - Create a new Release [in Github](https://github.com/scaleway/serverless-functions-node/releases)
+- Check that the `publish` pipeline succeeded
 
 Please follow [Semantic Versioning](https://semver.org/) guidelines when deciding which version to go to.
 
