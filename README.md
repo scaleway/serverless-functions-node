@@ -1,7 +1,9 @@
 # Serverless Functions Node
 
-[![build-and-test](https://github.com/scaleway/serverless-functions-node/actions/workflows/npmtest.yml/badge.svg)](https://github.com/scaleway/serverless-functions-node/actions/workflows/npmtest.yml)
-![node](https://img.shields.io/badge/node-16_|_18-blue.svg)
+![Tests](https://github.com/scaleway/serverless-functions-node/actions/workflows/tests.yml/badge.svg)
+![Examples](https://github.com/scaleway/serverless-functions-node/actions/workflows/examples.yml/badge.svg)
+[![NPM Version](https://img.shields.io/npm/v/@scaleway/serverless-functions.svg)](https://www.npmjs.com/package/@scaleway/serverless-functions)
+![Node](https://img.shields.io/badge/node-16_|_18-blue.svg)
 
 Scaleway Serverless Functions Node is a framework which simplifies working with [Scaleway Serverless Functions](https://www.scaleway.com/en/serverless-functions/).
 

@@ -1,14 +1,12 @@
 # Examples
 
-Each example contains a `handler.js` file.
-
-To run them, you first need to install the dependencies in this directory:
+To run the examples, you first need to install the examples dependencies:
 
 ```console
 npm i
 ```
 
-Then you can run examples with:
+You can then run each example with:
 
 ```console
 node <example_name>/handler.js
