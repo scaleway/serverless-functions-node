@@ -2,8 +2,8 @@
   "name": "@scaleway/serverless-functions",
   "version": "1.1.0",
   "description": "",
-  "main": "framework/dist/local/index.js",
-  "types": "framework/dist/local/index.d.ts",
+  "main": "framework/dist/framework/local/index.js",
+  "types": "framework/dist/framework/local/index.d.ts",
   "scripts": {
     "build": "node_modules/.bin/tsc -p tsconfig.json",
     "format": "prettier --write .",

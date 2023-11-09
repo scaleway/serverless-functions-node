@@ -1,4 +1,6 @@
 ---
+name: "build"
+
 on:
   push:
     branches: ["main"]
@@ -9,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  build:
     strategy:
       matrix:
         node-version: ["16.x", "18.x"]

@@ -1,0 +1,66 @@
+---
+name: "examples"
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  examples:
+    strategy:
+      matrix:
+        node-version: ["16.x", "18.x"]
+        example:
+          [
+            "not_stringified_body",
+            "print_event_context",
+            "stringified_body",
+            "upload_file_multipart",
+            "with_callback",
+            "with_event_components",
+            "with_http_get",
+            "with_http_post",
+            "with_object",
+            "with_promise",
+          ]
+
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: "Set up node ${{ matrix.node-version }}"
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "${{ matrix.node-version }}"
+          cache: "npm"
+
+      - name: "Install framework dependencies"
+        run: npm ci
+
+      - name: "Build framework"
+        run: npm run build
+
+      - name: "Install examples dependencies"
+        run: npm ci
+        working-directory: examples
+
+      - name: "Link framework"
+        run: npm link
+
+      - name: "Link framework in examples"
+        run: npm link @scaleway/serverless-functions
+        working-directory: examples
+
+      - name: "Run example"
+        run: node ${{ matrix.example }}/handler.js &
+        working-directory: examples
+
+      - name: "Wait for it to start"
+        run: sleep 1
+
+      - name: "Launch a request"
+        run: curl http://localhost:8080
+        working-directory: examples
