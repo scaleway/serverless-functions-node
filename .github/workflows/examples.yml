@@ -61,6 +61,13 @@ jobs:
       - name: "Wait for it to start"
         run: sleep 1
 
-      - name: "Launch a request"
+      - name: "Send a GET request"
         run: curl http://localhost:8080
+        working-directory: examples
+
+      - name: "Send a POST request"
+        run: >
+          curl -X POST
+          -d '{"foo": "bar"}'
+          http://localhost:8080
         working-directory: examples
