@@ -49,10 +49,11 @@ describe("Test local server can handle different request types", () => {
 });
 
 // This binary data is non-utf8 encoded, it was randomly generated with openssl rand -base64 14
-const binaryData = Buffer.from("\x80\x81\x82\x83\x84\x87\x88\x89\x8a\x8b\x8c\x8d\x8e\x8f");
+const binaryData = Buffer.from(
+  "\x80\x81\x82\x83\x84\x87\x88\x89\x8a\x8b\x8c\x8d\x8e\x8f",
+);
 
 function b64handler(event: Event, context: Context, callback: Callback) {
-
   return {
     body: binaryData.toString("base64"),
     isBase64Encoded: true,
