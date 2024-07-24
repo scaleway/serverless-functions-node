@@ -18,16 +18,23 @@ const handleResponse = (reply: FastifyReply, result: unknown) => {
     result = result.toString();
   } else {
     const response = JSON.parse(JSON.stringify(result));
-    if (response["statusCode"]) {
+
+    if ("statusCode" in response) {
       reply.status(response["statusCode"] as number);
     }
-    if (response["headers"]) {
+
+    if ("headers" in response) {
       for (const header in response["headers"]) {
         reply.header(header, response["headers"][header]);
       }
     }
-    if (response["body"]) {
+
+    if ("body" in response) {
       result = response["body"];
+    }
+
+    if ("isBase64Encoded" in response && response["isBase64Encoded"]) {
+      result = Buffer.from(result as string, "base64");
     }
   }
 

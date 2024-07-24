@@ -12,3 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial project setup
 - Local testing utils
 - Repository setup
+
+## v0.1.2
+
+### Fixed
+
+- Added support for `isBase64Encoded` in response

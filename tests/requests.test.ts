@@ -47,3 +47,35 @@ describe("Test local server can handle different request types", () => {
     server.close();
   });
 });
+
+function b64handler(event: Event, context: Context, callback: Callback) {
+  return {
+    body: "SGVsbG8gV29ybGQhCg==", // base64 encoded "Hello World!"
+    isBase64Encoded: true,
+  };
+}
+
+describe("Test local server can handle base64 encoded response", () => {
+  let server: FastifyInstance;
+
+  beforeEach(async () => {
+    // Start the server
+    server = serveHandler(b64handler, 8080);
+    await server.ready();
+  });
+
+  test("Base64 encoded response", async () => {
+    // Make request
+    const response = await fetch("http://localhost:8080", {
+      method: "GET",
+    });
+
+    const responseText = await response.text();
+    expect(responseText).toBe("Hello World!\n");
+  });
+
+  afterEach(async () => {
+    // Stop the server
+    server.close();
+  });
+});
