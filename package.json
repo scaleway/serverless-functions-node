@@ -1,6 +1,6 @@
 {
   "name": "@scaleway/serverless-functions",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
   "main": "framework/dist/framework/local/index.js",
   "types": "framework/dist/framework/local/index.d.ts",
