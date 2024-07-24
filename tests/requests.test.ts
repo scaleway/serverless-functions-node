@@ -48,9 +48,13 @@ describe("Test local server can handle different request types", () => {
   });
 });
 
+// This binary data is non-utf8 encoded, it was randomly generated with openssl rand -base64 14
+const binaryData = Buffer.from("\x80\x81\x82\x83\x84\x87\x88\x89\x8a\x8b\x8c\x8d\x8e\x8f");
+
 function b64handler(event: Event, context: Context, callback: Callback) {
+
   return {
-    body: "SGVsbG8gV29ybGQhCg==", // base64 encoded "Hello World!"
+    body: binaryData.toString("base64"),
     isBase64Encoded: true,
   };
 }
@@ -66,12 +70,11 @@ describe("Test local server can handle base64 encoded response", () => {
 
   test("Base64 encoded response", async () => {
     // Make request
-    const response = await fetch("http://localhost:8080", {
-      method: "GET",
-    });
+    const response = await fetch("http://localhost:8080");
 
-    const responseText = await response.text();
-    expect(responseText).toBe("Hello World!\n");
+    const responeBytes = await response.arrayBuffer();
+    const responseBuffer = Buffer.from(responeBytes);
+    expect(responseBuffer).toEqual(binaryData);
   });
 
   afterEach(async () => {
