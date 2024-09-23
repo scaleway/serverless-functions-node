@@ -14,7 +14,7 @@
   "dependencies": {
     "@fastify/url-data": "^5.3.1",
     "@types/node": "^22.0.0",
-    "fastify": "^4.15.0"
+    "fastify": "^5.0.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.7",
