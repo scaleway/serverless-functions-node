@@ -12,7 +12,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@fastify/url-data": "^5.3.1",
+    "@fastify/url-data": "^6.0.3",
     "@types/node": "^22.0.0",
     "fastify": "^4.15.0"
   },
